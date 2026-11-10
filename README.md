@@ -157,7 +157,7 @@ journal is reported as existing rather than overwritten, including when local st
 was lost. Remote identity must include the same company and external reference.
 
 Reads retry bounded 429/502/503/504 responses. Writes retry only explicit 429
-rejections, honoring `Retry-After` or bounded exponential backoff with jitter. A
+rejections, honoring `Retry-After` or bounded exponential backoff. A
 timeout, connection error, malformed response, or 5xx **never automatically replays
 the submission**: the target first reconciles remotely by the stable journal ID.
 An unresolved outcome is a failed bookmark, not an assumed success. Inspect Workday

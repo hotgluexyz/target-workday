@@ -108,7 +108,6 @@ class WorkdayClient:
             read=0 if write else None,
             other=0,
             backoff_factor=1,
-            backoff_jitter=1,
             status_forcelist=[429] if write else [429, 502, 503, 504],
             allowed_methods=["POST"],
             respect_retry_after_header=True,
