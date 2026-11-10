@@ -1,0 +1,8 @@
+.venv/
+.secrets/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+hg-target-exception-*.json
+user_signal.listener

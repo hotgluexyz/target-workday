@@ -1,0 +1,17 @@
+name: Test
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v6
+      - run: uv venv --python 3.10 --seed .venv
+      - run: uv pip install --python .venv/bin/python -e . --group dev
+      - run: .venv/bin/pytest -q
+      - run: .venv/bin/ruff check target_workday tests
+      - run: .venv/bin/ruff format --check target_workday tests
