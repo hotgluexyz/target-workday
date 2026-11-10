@@ -1,0 +1,1 @@
+"""Workday Finance Singer target."""
