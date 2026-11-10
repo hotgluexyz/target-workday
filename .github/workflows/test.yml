@@ -5,13 +5,16 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        urllib3: ["urllib3==1.26.20", "urllib3>=2,<3"]
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - uses: astral-sh/setup-uv@v6
       - run: uv venv --python 3.10 --seed .venv
-      - run: uv pip install --python .venv/bin/python -e . --group dev
+      - run: uv pip install --python .venv/bin/python -e . --group dev '${{ matrix.urllib3 }}'
       - run: .venv/bin/pytest -q
       - run: .venv/bin/ruff check target_workday tests
       - run: .venv/bin/ruff format --check target_workday tests
